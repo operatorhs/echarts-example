@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./lib/echarts.js"></script>
+  <script src="./lib/jquery.min.js"></script>
+</head>
+<body>
+  <div id="app" style="width: 600px; height: 400px;"></div>
+  <button id="btn">点击事件</button>
+  <script>
+    // 1. 是ECharts 最基本代码结构
+    // 2. 准备数据[{ name: ???, value: ??? }, {}]
+    //  淘宝：11231 京东： 22673 唯品会： 6123 1号店：8989 聚美优品： 6700
+    // 设置type pie clear dispose
+    var app = document.querySelector('#app')
+    var mCharts = echarts.init(app)
+
+    var pieData = [
+      {
+        name: '淘宝',
+        value: 11231
+      },
+      {
+        name: '京东',
+        value: 22673
+      },
+      {
+        name: '唯品会',
+        value: 6123
+      },
+      {
+        name: '1号店',
+        value: 8989
+      },
+      {
+        name: '聚美优品',
+        value: 6700
+      }
+    ]
+
+    var option = {
+      legend: {
+        data: ['淘宝', '京东', '唯品会', '1号店', '聚美优品']
+      },
+      series: [
+        {
+          type: 'pie',
+          data: pieData
+        }
+      ]
+    }
+    mCharts.setOption(option)
+    mCharts.on('click', function(arg) {
+      console.log('哈哈哈哈', arg.name)
+    })
+    // off
+    mCharts.on('legendselectchanged', function(e) {
+      console.log(e)
+    })
+
+    $('#btn').click(function() {
+      mCharts.dispatchAction({
+        type: 'highlight',
+        seriesIndex: 0,
+        dataIndex: 1
+      })
+      mCharts.dispatchAction({
+        type: 'showTip',
+        seriesIndex: 0,
+        dataIndex: 2
+      })
+    })
+
+  </script>
+</body>
+</html>

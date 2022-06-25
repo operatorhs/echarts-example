@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./lib/echarts.js"></script>
+  <script src="./lib/roma.js"></script>
+</head>
+<body>
+  <div id="app" style="width: 600px; height: 400px;"></div>
+  <script>
+    // 1. 在线定制主题
+    // 2. 下载主题的js 文件
+    // 3. 在html中导入js文件
+    // 4. 在init 方法中知名主题名称
+    var app = document.querySelector('#app')
+    var mCharts = echarts.init(app, 'roma')
+    var xDataArr = ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+    var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86]
+    var option = {
+
+      xAxis: {
+        type: 'category',
+        data: xDataArr
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          'name': '语文',
+          'type': 'bar',
+          'data': yDataArr
+        }
+      ]
+    }
+    mCharts.setOption(option)
+  </script>
+</body>
+</html>

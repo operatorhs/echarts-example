@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./lib/echarts.js"></script>
+  <script src="./lib/jquery.min.js"></script>
+</head>
+<body>
+  <div id="app" style="width: 600px; height: 400px;"></div>
+  <script>
+    var app = document.querySelector('#app')
+    var mCharts = echarts.init(app)
+    mCharts.showLoading()
+    setTimeout(() => {
+      $.get('/senior/json/test_data.json', function(data) {
+      mCharts.hideLoading()
+      var axisData = []
+      var len = data.length
+
+      for (var i = 0; i < len; i ++) {
+        var item = data[i]
+        var height = item.height
+        var weight = item.weight
+        var newArr = [height, weight]
+        axisData.push(newArr)
+      }
+      console.log(axisData)
+      var option = {
+        xAxis: {
+          type: 'value',
+          scale: true
+        },
+        yAxis: {
+          type: 'value',
+          scale: true
+        },
+        series: [
+          {
+            type: 'scatter', // 散点图
+            data: axisData
+          }
+        ]
+      }
+      mCharts.setOption(option)
+    })
+  }, 3000)
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./lib/echarts.js"></script>
+  <script src="./lib/roma.js"></script>
+</head>
+<body>
+  <div id="app" style="width: 600px; height: 400px;"></div>
+  <script>
+    // 主题调色盘
+    var app = document.querySelector('#app')
+    var mCharts = echarts.init(app)
+
+    var pieData = [
+      {
+        name: '淘宝',
+        value: 11231,
+        itemStyle: {
+          color: 'yellow'
+        },
+        label: {
+          color: 'green'
+        },
+        emphasis: {
+          itemStyle: {
+            color: 'pink'
+          },
+          label: {
+          color: 'black'
+        },
+        }
+      },
+      {
+        name: '京东',
+        value: 22673
+      },
+      {
+        name: '唯品会',
+        value: 6123
+      },
+      {
+        name: '1号店',
+        value: 8989
+      },
+      {
+        name: '聚美优品',
+        value: 6700
+      }
+    ]
+
+    var option = {
+      title: {
+        text: '董敏购物图',
+        textStyle: {
+          color: 'blue'
+        }
+      },
+      series: [
+        {
+          type: 'pie',
+          data: pieData
+        }
+      ]
+    }
+    mCharts.setOption(option)
+  </script>
+</body>
+</html>

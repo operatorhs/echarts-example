@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./lib/echarts.js"></script>
+  <script src="./lib/jquery.min.js"></script>
+</head>
+<body>
+  <div id="app" style="width: 600px; height: 400px;"></div>
+  <script>
+    // 1.加载安徽省地图的矢量数据
+    // 2. 在Ajax 的毁掉函数中国呢注册地图矢量数据 echarts.registerMap('anhui', '矢量地图数据')
+    // 3， 配置geo的type 为'map'， map为‘anhui’
+    // 4. 通过zoom 调整缩放比例
+    // 5.通过center 调整中心点
+    var app = document.querySelector('#app')
+    var mCharts = echarts.init(app)
+    $.get('json/map/province/anhui.json', function(ret) {
+      console.log(ret)
+      var anhui = echarts.registerMap('anhui', ret)
+      var option = {
+        geo: {
+          type: 'map',
+          map: 'anhui',
+          roam: true,
+          zoom: 2,
+          label: {
+            show: true
+          },
+          center: [117.283042, 31.86119]
+        }
+      }
+      mCharts.setOption(option)
+    })
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+[
+  {"gender": "female", "height": 161.2, "weight": 51.6},
+  {"gender": "female", "height": 167.5, "weight": 59},
+  {"gender": "female", "height": 159.5, "weight": 49.2},
+  {"gender": "female", "height": 170, "weight": 59},
+  {"gender": "female", "height": 159.1, "weight": 47.6},
+  {"gender": "female", "height": 160.2, "weight": 75.2},
+  {"gender": "female", "height": 168.2, "weight": 49.2},
+  {"gender": "male", "height": 183.0, "weight": 90.9},
+  {"gender": "male", "height": 170.2, "weight": 63.2},
+  {"gender": "male", "height": 190.5, "weight": 98.2},
+  {"gender": "male", "height": 180.3, "weight": 83.2}
+]

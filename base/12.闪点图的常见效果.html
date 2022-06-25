@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./lib/echarts.js"></script>
+</head>
+<body>
+  <div id="app" style="width: 600px; height: 400px;"></div>
+  <script>
+    var app = document.querySelector('#app')
+    var mCharts = echarts.init(app)
+    var data = [
+      {'gender': 'female', 'height': 161.2, 'weight': 51.6},
+      {'gender': 'female', 'height': 167.5, 'weight': 59},
+      {'gender': 'female', 'height': 159.5, 'weight': 49.2},
+      {'gender': 'female', 'height': 170, 'weight': 59},
+      {'gender': 'female', 'height': 159.1, 'weight': 47.6},
+      {'gender': 'female', 'height': 160.2, 'weight': 75.2},
+      {'gender': 'female', 'height': 168.2, 'weight': 49.2},
+      {'gender': 'male', 'height': 183.0, 'weight': 90.9},
+      {'gender': 'male', 'height': 170.2, 'weight': 63.2},
+      {'gender': 'male', 'height': 190.5, 'weight': 98.2},
+      {'gender': 'male', 'height': 180.3, 'weight': 83.2},
+    ]
+
+    var axisData = []
+    var len = data.length
+
+    for (var i = 0; i < len; i ++) {
+      var item = data[i]
+      var height = item.height
+      var weight = item.weight
+      var newArr = [height, weight]
+      axisData.push(newArr)
+    }
+    console.log(axisData)
+    var option = {
+      xAxis: {
+        type: 'value',
+        scale: true
+      },
+      yAxis: {
+        type: 'value',
+        scale: true
+      },
+      series: [
+        {
+          type: 'effectScatter', // 散点图 scatter effectScatter  涟漪效果
+          rippleEffect: {
+            scale: 4
+          },
+          showEffectOn: 'emphasis', // render emphasis
+          data: axisData,
+          symbolSize: function(arg) {
+            var height = arg[0] / 100
+            var weight = arg[1]
+            // bmi = 体重（kg） / (身高 * 身高(m)) > 28 肥胖
+            var bmi = weight / (height * height)
+            if (bmi > 28) {
+              return 10
+            } else {
+              return 5
+            }
+          },
+          itemStyle: {
+            color: function(arg) {
+              var height = arg.data[0] / 100
+              var weight = arg.data[1]
+              var bmi = weight / (height * height)
+
+              if (bmi > 28) {
+                return 'red'
+              } else {
+                return 'green'
+              }
+            }
+          }
+        }
+      ]
+    }
+    mCharts.setOption(option)
+  </script>
+</body>
+</html>

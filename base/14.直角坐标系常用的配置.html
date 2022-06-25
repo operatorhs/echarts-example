@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./lib/echarts.js"></script>
+</head>
+<body>
+  <!-- 
+    步骤一 引入echarts.js 文件 
+    步骤二 准备一个呈现图表的盒子
+    步骤三 初始化echarts 实例对象
+    步骤四 准备配置项
+    步骤五 将配置项设置给echarts 实例对象
+  -->
+  <div id="app" style="width: 600px; height: 400px;"></div>
+  <script>
+    var app = document.querySelector('#app')
+    var mCharts = echarts.init(app)
+    var xDataArr = ['张三', '李四', '王五', '闰土', '小明', '茅台', '二妞', '大强']
+    var yDataArr = [88, 92, 63, 77, 94, 80, 72, 86]
+    var option = {
+      grid: {
+        show: true,
+        borderColor: 'red',
+      },
+      xAxis: {
+        type: 'category', // 类目轴
+        data: xDataArr,
+        // position: 'top'
+      },
+      yAxis: {
+        type: 'value', // 数值轴
+        // position: 'right'
+      },
+      series: [
+        {
+          'name': '语文',
+          'type': 'bar',
+          'data': yDataArr,
+          'markPoint': {
+            data: [
+              {type: 'max', name: '最大值'},
+              {type: 'min', name: '最小值'}
+            ]
+          },
+          'markLine': {
+            data: [
+              {
+                type: 'average',
+                name: '平均值'
+              }
+            ]
+          },
+          'label': {
+            show: true,
+            rotate: 60,
+            position: 'inside'
+          },
+          'barWidth': '30%'
+        }
+      ]
+    }
+    mCharts.setOption(option)
+  </script>
+</body>
+</html>

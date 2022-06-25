@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./lib/echarts.js"></script>
+</head>
+<body>
+  <div id="app" style="width: 600px; height: 400px;"></div>
+  <script>
+    var app = document.querySelector('#app')
+    var mCharts = echarts.init(app)
+    var option = {
+      series: [
+        {
+          type: 'gauge',
+          data: [
+            {
+              value: 97,
+              itemStyle: {
+                color: 'pink'
+              }
+            },
+            {
+              value: 120,
+              itemStyle: {
+                color: 'green'
+              }
+            },
+            {
+              value: 160
+            }
+          ],
+          min: 50,
+          max: 260
+        }
+      ]
+    }
+    mCharts.setOption(option)
+  </script>
+</body>
+</html>
